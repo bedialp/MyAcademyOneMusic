@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Abstract
 {
-    public interface IAlbumDal : IGenericDal<Album>
-    {
-
-    }
+	public interface IAlbumDal : IGenericDal<Album>
+	{
+		List<Album> GetAlbumsWithSinger();
+	}
 }

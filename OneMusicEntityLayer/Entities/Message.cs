@@ -8,7 +8,7 @@ namespace OneMusic.EntityLayer.Entities
 {
     public class Message
     {
-        public int MesaageId { get; set; }
+        public int MessageId {  get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Subject { get; set; }
