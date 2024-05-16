@@ -13,7 +13,7 @@ namespace OneMusic.DataAccessLayer.Context
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("server=DESKTOP-26KIC6Q\\SQLEXPRESS;database=OneMusicDb;integrated security=true;trustServerCertificate=true");
+			optionsBuilder.UseSqlServer("server=DESKTOP-26KIC6Q\\SQLEXPRESS;database=NewOneMusicDb;integrated security=true;trustServerCertificate=true");
 		}
 
 		public DbSet<About> Abouts { get; set; }

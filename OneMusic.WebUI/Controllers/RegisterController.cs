@@ -30,7 +30,7 @@ namespace OneMusic.WebUI.Controllers
 				Email = model.Email,
 				UserName = model.UserName,
 				Name = model.Name,
-				SurName = model.Surname,
+				Surname = model.Surname,
 			};
 
 			if (model.Password == model.ConfirmPassword)
@@ -38,6 +38,7 @@ namespace OneMusic.WebUI.Controllers
 				var result = await _userManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
+					await _userManager.AddToRoleAsync(user, "Visitor");
 					return RedirectToAction("Index", "Login");
 				}
 				foreach (var item in result.Errors)

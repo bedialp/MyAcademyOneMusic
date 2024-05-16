@@ -1,0 +1,16 @@
+﻿@model AppRole
+@{
+	ViewData["Title"] = "CreateRole";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h3>Yeni Rol Ekleme Sayfasi</h3>
+
+<form method="post">
+	<div class="form-group">
+		<label>Rol Adi</label>
+		<input type="text" asp-for="Name" class="form-control" />
+	</div>
+	<br />
+	<button class="btn btn-outline-primary">Kaydet</button>
+</form>

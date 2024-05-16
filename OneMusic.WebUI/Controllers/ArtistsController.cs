@@ -4,22 +4,19 @@ using OneMusic.EntityLayer.Entities;
 
 namespace OneMusic.WebUI.Controllers
 {
-	public class AdminLayoutController : Controller
+	public class ArtistsController : Controller
 	{
 		private readonly UserManager<AppUser> _userManager;
 
-		public AdminLayoutController(UserManager<AppUser> userManager)
+		public ArtistsController(UserManager<AppUser> userManager)
 		{
 			_userManager = userManager;
 		}
 
 		public async Task<IActionResult> Index()
 		{
-			var user = await _userManager.FindByNameAsync(User.Identity.Name);
-
-			ViewBag.username = user.Name + " " + user.Surname;
-
-			return View();
+			var values = await _userManager.GetUsersInRoleAsync("Artist");
+			return View(values);
 		}
 	}
 }

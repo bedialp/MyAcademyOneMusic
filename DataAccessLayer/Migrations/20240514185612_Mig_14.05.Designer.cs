@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OneMusic.DataAccessLayer.Context;
 
@@ -11,9 +12,11 @@ using OneMusic.DataAccessLayer.Context;
 namespace OneMusic.DataAccessLayer.Migrations
 {
     [DbContext(typeof(OneMusicContext))]
-    partial class OneMusicContextModelSnapshot : ModelSnapshot
+    [Migration("20240514185612_Mig_14.05")]
+    partial class Mig_1405
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,7 +165,7 @@ namespace OneMusic.DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("AppUserId")
+                    b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("CoverImage")
@@ -269,7 +272,7 @@ namespace OneMusic.DataAccessLayer.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Surname")
+                    b.Property<string>("SurName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -326,7 +329,7 @@ namespace OneMusic.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"));
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Adress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -399,11 +402,11 @@ namespace OneMusic.DataAccessLayer.Migrations
 
             modelBuilder.Entity("OneMusic.EntityLayer.Entities.Song", b =>
                 {
-                    b.Property<int>("SongId")
+                    b.Property<int>("SongID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SongId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SongID"));
 
                     b.Property<int>("AlbumId")
                         .HasColumnType("int");
@@ -416,7 +419,7 @@ namespace OneMusic.DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SongId");
+                    b.HasKey("SongID");
 
                     b.HasIndex("AlbumId");
 
@@ -478,7 +481,9 @@ namespace OneMusic.DataAccessLayer.Migrations
                 {
                     b.HasOne("OneMusic.EntityLayer.Entities.AppUser", "AppUser")
                         .WithMany("Albums")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OneMusic.EntityLayer.Entities.Singer", "Singer")
                         .WithMany("Albums")

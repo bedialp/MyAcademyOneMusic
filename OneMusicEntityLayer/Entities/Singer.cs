@@ -8,10 +8,10 @@ namespace OneMusic.EntityLayer.Entities
 {
     public class Singer
     {
-        public int SingerId { get; set; }
-        public String Name { get; set; }
-        public String ImageUrl { get; set; }
+		public int SingerId { get; set; }
+		public string Name { get; set; }
+		public string ImageUrl { get; set; }
 
-        public List<Album> Albums { get; set; }
-    }
+		public List<Album> Albums { get; set; }
+	}
 }
