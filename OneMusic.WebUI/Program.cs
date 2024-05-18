@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using OneMusic.BusinessLayer.Abstract;
 using OneMusic.BusinessLayer.Concrete;
@@ -7,7 +8,6 @@ using OneMusic.DataAccessLayer.Abstract;
 using OneMusic.DataAccessLayer.Concrete;
 using OneMusic.DataAccessLayer.Context;
 using OneMusic.EntityLayer.Entities;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,18 +26,24 @@ builder.Services.AddScoped<IBannerService, BannerManager>();
 builder.Services.AddScoped<ISingerDal, EfSingerDal>();
 builder.Services.AddScoped<ISingerService, SingerManager>();
 
-builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+builder.Services.AddValidatorsFromAssemblyContaining<SingerValidator>();
 
 builder.Services.AddDbContext<OneMusicContext>();
-
 builder.Services.AddControllersWithViews(option =>
 {
-	option.Filters.Add(new AuthorizeFilter());
+
+	var authorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+	option.Filters.Add(new AuthorizeFilter(authorizePolicy));
 });
 
-builder.Services.ConfigureApplicationCookie(option =>
+
+builder.Services.ConfigureApplicationCookie(options =>
 {
-	option.LoginPath = "/Login/Index";
+	options.LoginPath = "/Login/Index";
+	options.AccessDeniedPath = "/ErrorPage/AccessDenied";
+	options.LogoutPath = "/Login/Logout";
+
 });
 
 var app = builder.Build();
@@ -50,15 +56,26 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404/", "?code{0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+	pattern: "{controller=Default}/{action=Index}/{id?}");
+
+
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+	  name: "areas",
+	  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+	);
+});
 
 app.Run();
