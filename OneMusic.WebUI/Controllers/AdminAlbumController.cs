@@ -17,7 +17,8 @@ namespace OneMusic.WebUI.Controllers
 
 		public IActionResult Index()
 		{
-			var values = _albumService.TGetAlbumsWithSinger();
+
+			var values = _albumService.TGetList();
 			return View(values);
 		}
 
