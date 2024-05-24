@@ -7,6 +7,11 @@
 <h3>Profil Bilgileri Guncelleme Sayfasi</h3>
 
 <form method="post" enctype="multipart/form-data">
+
+	<div class="text-center">
+		<img src="@Model.ImageUrl" style="width:100px; height:100px;" />
+	</div>
+
 	<label>Ad</label>
 	<input type="text" asp-for="Name" class="form-control" required />
 	<br />
@@ -22,6 +27,7 @@
 	<label>Telefon No</label>
 	<input type="text" asp-for="PhoneNumber" class="form-control" />
 	<br />
+	<input type="hidden" asp-for="ImageUrl" class="form-control" />
 	<label>Profil Resmi</label>
 	<input type="file" asp-for="ImageFile" class="form-control" />
 	<br />
