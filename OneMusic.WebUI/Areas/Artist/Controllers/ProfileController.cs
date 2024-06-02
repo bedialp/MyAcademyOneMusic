@@ -38,11 +38,20 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Index(ArtistEditViewModel model)
 		{
+			ModelState.Clear();
 			var user = await _userManager.FindByNameAsync(User.Identity.Name);
 			if (model.ImageFile != null)
 			{
 				var resource = Directory.GetCurrentDirectory();
-				var extension = Path.GetExtension(model.ImageFile.FileName);
+				var permittedExtensions = new[] { ".jpg", ".png", ".gif" };
+				var extension = Path.GetExtension(model.ImageFile.FileName).ToLowerInvariant();
+
+				if (string.IsNullOrEmpty(extension) || !permittedExtensions.Contains(extension))
+				{
+					ModelState.AddModelError("", "Gecersiz Resim Dosyasi.");
+					return View(model);
+				}
+
 				var imageName = Guid.NewGuid() + extension;
 				var saveLocation = resource + "/wwwroot/images/" + imageName;
 				var stream = new FileStream(saveLocation, FileMode.Create);
@@ -80,7 +89,7 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
 				}
 
 			}
-			ModelState.AddModelError("", "Eski şifrenizi yanlış girdiniz.");
+			ModelState.AddModelError("", "Mecvut şifrenizi yanlış girdiniz.");
 			return View();
 		}
 	}
