@@ -9,39 +9,38 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
+    public class SingerManager : ISingerService
+    {
+        private readonly ISingerDal _singerDal;
 
-	public class SingerManager : ISingerService
-	{
-		private readonly ISingerDal _singerDal;
+        public SingerManager(ISingerDal singerDal)
+        {
+            _singerDal = singerDal;
+        }
 
-		public SingerManager(ISingerDal singerDal)
-		{
-			_singerDal = singerDal;
-		}
+        public void TCreate(Singer entity)
+        {
+            _singerDal.Create(entity);
+        }
 
-		public void TCreate(Singer entity)
-		{
-			_singerDal.Create(entity);
-		}
+        public void TDelete(int id)
+        {
+            _singerDal.Delete(id);
+        }
 
-		public void TDelete(int id)
-		{
-			_singerDal.Delete(id);
-		}
+        public Singer TGetById(int id)
+        {
+            return _singerDal.GetById(id);
+        }
 
-		public Singer TGetById(int id)
-		{
-			return _singerDal.GetById(id);
-		}
+        public List<Singer> TGetList()
+        {
+            return _singerDal.GetList();
+        }
 
-		public List<Singer> TGetList()
-		{
-			return _singerDal.GetList();
-		}
-
-		public void TUpdate(Singer entity)
-		{
-			_singerDal.Update(entity);
-		}
-	}
+        public void TUpdate(Singer entity)
+        {
+            _singerDal.Update(entity);
+        }
+    }
 }

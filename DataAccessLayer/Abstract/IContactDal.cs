@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Abstract
 {
-	public interface IAboutDal : IGenericDal<About>
-	{
-	}
+    public interface IContactDal : IGenericDal<Contact>
+    {
+    }
 }

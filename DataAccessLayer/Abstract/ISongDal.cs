@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Abstract
 {
-    public interface ISongDal: IGenericDal<Song>
+    public interface ISongDal : IGenericDal<Song>
     {
+        List<Song> GetSongsWithAlbumAndArtist(int id);
+        List<Song> GetSongWithAlbum();
+        List<Song> GetSongsWithAlbumByUserId(int id);
     }
 }

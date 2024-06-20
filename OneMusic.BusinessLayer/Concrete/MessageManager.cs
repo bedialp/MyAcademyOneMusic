@@ -9,31 +9,38 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
-	public class MessageManager(IMessageDal _messageDal) : IMessageService
-	{
-		public void TCreate(Message entity)
-		{
-			_messageDal.Create(entity);
-		}
+    public class MessageManager : IMessageService
+    {
+        private readonly IMessageDal _messageDal;
 
-		public void TDelete(int id)
-		{
-			_messageDal.Delete(id);
-		}
+        public MessageManager(IMessageDal messageDal)
+        {
+            _messageDal = messageDal;
+        }
 
-		public Message TGetById(int id)
-		{
-			return _messageDal.GetById(id);
-		}
+        public void TCreate(Message entity)
+        {
+            _messageDal.Create(entity);
+        }
 
-		public List<Message> TGetList()
-		{
-			return _messageDal.GetList();
-		}
+        public void TDelete(int id)
+        {
+            _messageDal.Delete(id);
+        }
 
-		public void TUpdate(Message entity)
-		{
-			_messageDal.Update(entity);
-		}
-	}
+        public Message TGetById(int id)
+        {
+            return _messageDal.GetById(id);
+        }
+
+        public List<Message> TGetList()
+        {
+            return _messageDal.GetList();
+        }
+
+        public void TUpdate(Message entity)
+        {
+            _messageDal.Update(entity);
+        }
+    }
 }

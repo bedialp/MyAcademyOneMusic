@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OneMusic.DataAccessLayer.Context;
 
@@ -11,9 +12,11 @@ using OneMusic.DataAccessLayer.Context;
 namespace OneMusic.DataAccessLayer.Migrations
 {
     [DbContext(typeof(OneMusicContext))]
-    partial class OneMusicContextModelSnapshot : ModelSnapshot
+    [Migration("20240613134327_Mig_category_table_added")]
+    partial class Mig_category_table_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -364,38 +367,6 @@ namespace OneMusic.DataAccessLayer.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("OneMusic.EntityLayer.Entities.Event", b =>
-                {
-                    b.Property<int>("EventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
-
-                    b.Property<string>("DateTime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Place")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EventId");
-
-                    b.ToTable("Events");
-                });
-
             modelBuilder.Entity("OneMusic.EntityLayer.Entities.Message", b =>
                 {
                     b.Property<int>("MessageId")
@@ -457,22 +428,13 @@ namespace OneMusic.DataAccessLayer.Migrations
                     b.Property<int>("AlbumId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SongImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SongName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("SongStatus")
-                        .HasColumnType("bit");
-
                     b.Property<string>("SongUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("SongValue")
-                        .HasColumnType("float");
 
                     b.HasKey("SongId");
 
