@@ -1,0 +1,49 @@
+﻿@model List<Contact>
+<section class="contact-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+@foreach (var item in Model)
+            {
+            <div class="col-12 col-lg-3">
+                <div class="contact-content mb-100">
+                    <!-- Title -->
+                    <div class="contact-title mb-50">
+                        <h5>İletişim Bilgileri</h5>
+                    </div>
+
+                    <!-- Single Contact Info -->
+                    <div class="single-contact-info d-flex align-items-center">
+                        <div class="icon mr-30">
+                            <span class="icon-placeholder"></span>
+                        </div>
+                        <p>@item.Address</p>
+                    </div>
+
+                    <!-- Single Contact Info -->
+                    <div class="single-contact-info d-flex align-items-center">
+                        <div class="icon mr-30">
+                            <span class="icon-smartphone"></span>
+                        </div>
+                        <p>@item.Phone</p>
+                    </div>
+
+                    <!-- Single Contact Info -->
+                    <div class="single-contact-info d-flex align-items-center">
+                        <div class="icon mr-30">
+                            <span class="icon-mail"></span>
+                        </div>
+                        <p>@item.Email</p>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-12 col-lg-9">
+                <!-- ##### Google Maps ##### -->
+                <div class="map-area mb-100">
+                    <iframe src="@item.MapUrl" allowfullscreen></iframe>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

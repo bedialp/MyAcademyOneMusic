@@ -1,0 +1,18 @@
+﻿@model Message
+@{
+	ViewData["Title"] = "ReadMessage";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<form method="get">
+	<input type="hidden" asp-for="MessageId" />
+	<label>Resim Url</label>
+	<input type="text" asp-for="Name" class="form-control" />
+	<br />
+	<label>Başlık</label>
+	<input type="text" asp-for="Subject" class="form-control" />
+	<br />
+	<label>Açıklama</label>
+	<textarea type="text" asp-for="Content" class="form-control" rows="4"></textarea>
+
+</form>

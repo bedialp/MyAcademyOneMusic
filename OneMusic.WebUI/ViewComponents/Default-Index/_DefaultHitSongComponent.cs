@@ -3,12 +3,11 @@ using OneMusic.BusinessLayer.Abstract;
 
 namespace OneMusic.WebUI.ViewComponents.Default_Index
 {
-    public class _DefaultAlbumComponent(IAlbumService albumService):ViewComponent
+    public class _DefaultHitSongComponent(ISongService _songService):ViewComponent
     {
-
         public IViewComponentResult Invoke()
         {
-            var value = albumService.TGetAlbumsWithArtist();
+            var value = _songService.TGetSongWithAlbum().OrderByDescending(x=>x.SongId).Take(6).ToList();
             return View(value);
         }
     }

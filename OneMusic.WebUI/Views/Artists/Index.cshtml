@@ -9,6 +9,7 @@
 <table class="table table-bordered table-hover">
 	<tr>
 		<th>#</th>
+		<th>Görsel</th>
 		<th>Sanatçı Adı</th>
 		<th>İşlemler</th>
 	</tr>
@@ -18,10 +19,11 @@
 		count++;
 		<tr>
 			<th>@count</th>
+			<th><img src="@item.ImageUrl" style="height:50px; width:50px" /></th>
 			<td>@item.Name @item.Surname</td>
 			<td>
 				<a href="/Artists/DeleteArtist/@item.Id" class="btn btn-outline-danger">Sil</a>
-				<a href="#" class="btn btn-outline-info">Albümlerini Gör</a>
+				<a href="/Albums/Index/@item.Id" class="btn btn-outline-info">Albümlerini Gör</a>
 			</td>
 		</tr>
 	}

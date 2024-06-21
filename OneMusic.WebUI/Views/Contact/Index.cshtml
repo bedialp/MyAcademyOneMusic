@@ -1,0 +1,12 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/one-music-gh-pages/img/bg-img/breadcumb2.jpg);">
+	<div class="bradcumbContent">
+		<h2>ILETISIM</h2>
+	</div>
+</section>
+@await Component.InvokeAsync("_DefaultContactInfoComponent")
+@await Component.InvokeAsync("_DefaultContactComponent")

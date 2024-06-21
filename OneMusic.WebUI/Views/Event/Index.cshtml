@@ -1,0 +1,13 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/one-music-gh-pages/img/bg-img/breadcumb.jpg);">
+	<div class="bradcumbContent">
+		<h2>ETKINLIKLER</h2>
+	</div>
+</section>
+<!-- ##### Event Area Start ##### -->
+@await Component.InvokeAsync("_DefaultEventComponent")
+<!-- ##### Event Area End ##### -->

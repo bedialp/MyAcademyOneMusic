@@ -1,0 +1,53 @@
+﻿@model List<Song>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+@foreach (var item in Model)
+{
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/one-music-gh-pages/img/bg-img/breadcumb3.jpg);">
+		<div class="bradcumbContent">
+			<p>See what’s new</p>
+			<h2>@item.Album.AlbumName</h2>
+		</div>
+	</section>
+
+	<div class="add-area mb-100 mt-20">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="adds">
+						<a href="#"><img src="@item.Album.CoverImage" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+<div class="one-music-songs-area mb-70 mt-20">
+	<div class="container">
+		<div class="row">
+			@foreach (var item in Model)
+			{
+				<div class="col-12">
+					<div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+						<div class="song-thumbnail">
+							<img src="@item.Album.AlbumName" alt="">
+						</div>
+						<div class="song-play-area">
+							<div class="song-name">
+								<p>@item.SongName</p>
+							</div>
+							<audio preload="auto" controls>
+								<source src="@item.SongUrl">
+							</audio>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+<!-- ##### Song Area End ##### -->
