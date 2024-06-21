@@ -7,16 +7,10 @@ using OneMusic.EntityLayer.Entities;
 namespace OneMusic.WebUI.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class AdminMessageController : Controller
+    public class AdminMessageController(IMessageService messageService, UserManager<AppUser> userManager) : Controller
     {
-        private readonly IMessageService _messageService;
-        private readonly UserManager<AppUser> _userManager;
-
-        public AdminMessageController(IMessageService messageService, UserManager<AppUser> userManager)
-        {
-            _messageService = messageService;
-            _userManager = userManager;
-        }
+        private readonly IMessageService _messageService = messageService;
+        private readonly UserManager<AppUser> _userManager = userManager;
 
         public IActionResult Index()
         {

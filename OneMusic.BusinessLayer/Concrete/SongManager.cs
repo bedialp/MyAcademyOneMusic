@@ -9,54 +9,49 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
-    public class SongManager : ISongService
+    public class SongManager(ISongDal songDal) : ISongService
     {
-        private readonly ISongDal _songDal;
+        private readonly ISongDal _songDal = songDal;
 
-        public SongManager(ISongDal songDal)
+        public void TCreate(Song entity)
         {
-            _songDal = songDal;
+            _songDal.Create(entity);
         }
 
-		public void TCreate(Song entity)
-		{
-			_songDal.Create(entity);
-		}
+        public void TDelete(int id)
+        {
+            _songDal.Delete(id);
+        }
 
-		public void TDelete(int id)
-		{
-			_songDal.Delete(id);
-		}
+        public Song TGetById(int id)
+        {
+            return _songDal.GetById(id);
+        }
 
-		public Song TGetById(int id)
-		{
-			return _songDal.GetById(id);
-		}
+        public List<Song> TGetList()
+        {
+            return _songDal.GetList();
+        }
 
-		public List<Song> TGetList()
-		{
-			return _songDal.GetList();
-		}
+        public List<Song> TGetSongWithAlbumAndArtist(int id)
+        {
+            return _songDal.GetSongsWithAlbumAndArtist(id);
+        }
 
-		public List<Song> TGetSongWithAlbumAndArtist(int id)
-		{
-			return _songDal.GetSongsWithAlbumAndArtist(id);
-		}
+        public List<Song> TGetSongWithAlbumByUserId(int id)
+        {
+            return _songDal.GetSongsWithAlbumByUserId(id);
+        }
 
-		public List<Song> TGetSongWithAlbumByUserId(int id)
-		{
-			return _songDal.GetSongsWithAlbumByUserId(id);
-		}
+        public List<Song> TGetSongWithAlbum()
+        {
 
-		public List<Song> TGetSongWithAlbum()
-		{
+            return _songDal.GetSongWithAlbum();
+        }
 
-			return _songDal.GetSongWithAlbum();
-		}
-
-		public void TUpdate(Song entity)
-		{
-			_songDal.Update(entity);
-		}
-	}
+        public void TUpdate(Song entity)
+        {
+            _songDal.Update(entity);
+        }
+    }
 }

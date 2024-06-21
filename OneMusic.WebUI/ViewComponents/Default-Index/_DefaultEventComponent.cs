@@ -3,14 +3,9 @@ using OneMusic.BusinessLayer.Abstract;
 
 namespace OneMusic.WebUI.ViewComponents.Default_Index
 {
-    public class _DefaultEventComponent : ViewComponent
+    public class _DefaultEventComponent(IEventService eventService) : ViewComponent
     {
-        private readonly IEventService _eventService;
-
-        public _DefaultEventComponent(IEventService eventService)
-        {
-            _eventService = eventService;
-        }
+        private readonly IEventService _eventService = eventService;
 
         public IViewComponentResult Invoke()
         {

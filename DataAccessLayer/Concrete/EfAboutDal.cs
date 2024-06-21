@@ -10,10 +10,7 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Concrete
 {
-	public class EfAboutDal : GenericRepository<About>, IAboutDal
-	{
-		public EfAboutDal(OneMusicContext context) : base(context)
-		{
-		}
-	}
+    public class EfAboutDal(OneMusicContext context) : GenericRepository<About>(context), IAboutDal
+    {
+    }
 }

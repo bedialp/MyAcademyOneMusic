@@ -9,14 +9,9 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
-    public class MessageManager : IMessageService
+    public class MessageManager(IMessageDal messageDal) : IMessageService
     {
-        private readonly IMessageDal _messageDal;
-
-        public MessageManager(IMessageDal messageDal)
-        {
-            _messageDal = messageDal;
-        }
+        private readonly IMessageDal _messageDal = messageDal;
 
         public void TCreate(Message entity)
         {

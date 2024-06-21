@@ -8,14 +8,9 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Repositories
 {
-    public class GenericRepository<T> : IGenericDal<T> where T : class
+    public class GenericRepository<T>(OneMusicContext context) : IGenericDal<T> where T : class
     {
-        private readonly OneMusicContext _context;
-
-        public GenericRepository(OneMusicContext context)
-        {
-            _context = context;
-        }
+        private readonly OneMusicContext _context = context;
 
         public void Create(T entity)
         {
@@ -37,7 +32,7 @@ namespace OneMusic.DataAccessLayer.Repositories
 
         public List<T> GetList()
         {
-            return _context.Set<T>().ToList();
+            return [.. _context.Set<T>()];
         }
 
         public void Update(T entity)

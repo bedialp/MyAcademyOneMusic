@@ -4,20 +4,15 @@ using OneMusic.BusinessLayer.Abstract;
 
 namespace OneMusic.WebUI.Controllers
 {
-	[AllowAnonymous]
-	public class EventController : Controller
-	{
-		private readonly IEventService _eventService;
+    [AllowAnonymous]
+    public class EventController(IEventService eventService) : Controller
+    {
+        private readonly IEventService _eventService = eventService;
 
-		public EventController(IEventService eventService)
-		{
-			_eventService = eventService;
-		}
-
-		public IActionResult Index()
-		{
-			var values = _eventService.TGetList();
-			return View(values);
-		}
-	}
+        public IActionResult Index()
+        {
+            var values = _eventService.TGetList();
+            return View(values);
+        }
+    }
 }

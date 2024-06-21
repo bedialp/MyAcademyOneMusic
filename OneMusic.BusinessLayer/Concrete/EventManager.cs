@@ -9,14 +9,9 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
-    public class EventManager : IEventService
+    public class EventManager(IEventDal eventDal) : IEventService
     {
-        private readonly IEventDal _eventDal;
-
-        public EventManager(IEventDal eventDal)
-        {
-            _eventDal = eventDal;
-        }
+        private readonly IEventDal _eventDal = eventDal;
 
         public void TCreate(Event entity)
         {

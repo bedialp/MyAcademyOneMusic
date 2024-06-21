@@ -9,14 +9,9 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
-    public class CategoryManager : ICategoryService
+    public class CategoryManager(ICategoryDal categoryDal) : ICategoryService
     {
-        private readonly ICategoryDal _categoryDal;
-
-        public CategoryManager(ICategoryDal categoryDal)
-        {
-            _categoryDal = categoryDal;
-        }
+        private readonly ICategoryDal _categoryDal = categoryDal;
 
         public void TCreate(Category entity)
         {
@@ -40,7 +35,7 @@ namespace OneMusic.BusinessLayer.Concrete
 
         public void TUpdate(Category entity)
         {
-           _categoryDal.Update(entity);
+            _categoryDal.Update(entity);
         }
     }
 }

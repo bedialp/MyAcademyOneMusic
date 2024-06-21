@@ -9,14 +9,9 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
-    public class SingerManager : ISingerService
+    public class SingerManager(ISingerDal singerDal) : ISingerService
     {
-        private readonly ISingerDal _singerDal;
-
-        public SingerManager(ISingerDal singerDal)
-        {
-            _singerDal = singerDal;
-        }
+        private readonly ISingerDal _singerDal = singerDal;
 
         public void TCreate(Singer entity)
         {

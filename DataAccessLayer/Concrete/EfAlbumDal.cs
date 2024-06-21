@@ -11,22 +11,18 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Concrete
 {
-    public class EfAlbumDal : GenericRepository<Album>, IAlbumDal
+    public class EfAlbumDal(OneMusicContext context) : GenericRepository<Album>(context), IAlbumDal
     {
-        private readonly OneMusicContext _context;
-        public EfAlbumDal(OneMusicContext context) : base(context)
-        {
-            _context = context;
-        }
+        private readonly OneMusicContext _context = context;
 
         public List<Album> GetAlbumsByArtist(int id)
         {
-            return _context.Albums.Include(y => y.AppUser).Include(a => a.Songs).Where(x => x.AppUserId == id).ToList();
+            return [.. _context.Albums.Include(y => y.AppUser).Include(a => a.Songs).Where(x => x.AppUserId == id)];
         }
 
         public List<Album> GetAlbumsWithArtist()
         {
-            return _context.Albums.Include(x => x.AppUser).Include(a => a.Songs).ToList();
+            return [.. _context.Albums.Include(x => x.AppUser).Include(a => a.Songs)];
         }
 
     }

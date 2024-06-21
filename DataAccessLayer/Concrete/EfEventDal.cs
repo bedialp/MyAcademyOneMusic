@@ -10,10 +10,7 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Concrete
 {
-    public class EfEventDal : GenericRepository<Event>, IEventDal
+    public class EfEventDal(OneMusicContext context) : GenericRepository<Event>(context), IEventDal
     {
-        public EfEventDal(OneMusicContext context) : base(context)
-        {
-        }
     }
 }

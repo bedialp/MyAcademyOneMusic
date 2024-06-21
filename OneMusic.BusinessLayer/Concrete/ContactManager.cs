@@ -9,14 +9,9 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
-    public class ContactManager : IContactService
+    public class ContactManager(IContactDal contactDal) : IContactService
     {
-        private readonly IContactDal _contactDal;
-
-        public ContactManager(IContactDal contactDal)
-        {
-            _contactDal = contactDal;
-        }
+        private readonly IContactDal _contactDal = contactDal;
 
         public void TCreate(Contact entity)
         {

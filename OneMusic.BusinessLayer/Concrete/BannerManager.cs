@@ -9,14 +9,9 @@ using System.Threading.Tasks;
 
 namespace OneMusic.BusinessLayer.Concrete
 {
-    public class BannerManager : IBannerService
+    public class BannerManager(IBannerDal bannerDal) : IBannerService
     {
-        private readonly IBannerDal _bannerDal;
-
-        public BannerManager(IBannerDal bannerDal)
-        {
-            _bannerDal = bannerDal;
-        }
+        private readonly IBannerDal _bannerDal = bannerDal;
 
         public void TCreate(Banner entity)
         {

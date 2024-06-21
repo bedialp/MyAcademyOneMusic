@@ -10,10 +10,7 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Concrete
 {
-    public class EfBannerDal : GenericRepository<Banner>, IBannerDal
+    public class EfBannerDal(OneMusicContext context) : GenericRepository<Banner>(context), IBannerDal
     {
-        public EfBannerDal(OneMusicContext context) : base(context)
-        {
-        }
     }
 }

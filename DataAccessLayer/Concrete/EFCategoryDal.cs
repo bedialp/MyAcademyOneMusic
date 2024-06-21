@@ -10,10 +10,7 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Concrete
 {
-    public class EfCategoryDal : GenericRepository<Category>, ICategoryDal
+    public class EfCategoryDal(OneMusicContext context) : GenericRepository<Category>(context), ICategoryDal
     {
-        public EfCategoryDal(OneMusicContext context) : base(context)
-        {
-        }
     }
 }
