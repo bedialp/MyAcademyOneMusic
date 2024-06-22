@@ -14,8 +14,8 @@
 	<tr>
 		<th>#</th>
 		<th>Şarkı Adı</th>
-		<th>Şarkı</th>
 		<th>Albüm</th>
+		<th>Şarkı</th>
 		<th style="text-align:center" colspan="2">İşlemler</th>
 	</tr>
 	@foreach (var item in Model)
@@ -24,14 +24,14 @@
 		<tr>
 			<td>@count</td>
 			<td>@item.SongName</td>
+			<td>@item.Album.AlbumName</td>
 			<td style="text-align:center">
 				<audio data-id="@item.SongId" class="audioPlayer" preload="auto" controls>
 					<source src="@item.SongUrl">
 				</audio>
 			</td>
-			<td>@item.Album.AlbumName</td>
 			<td><a asp-action="UpdateSong" asp-route-id="@item.SongId" class="btn btn-outline-success">Güncelle</a></td>
-			<td><button onclick="deleteSong(@item.SongId)" class="btn btn-outline-danger">Sil</button></td>
+			<td><button onclick="DeleteMySong(@item.SongId)" class="btn btn-outline-danger">Sil</button></td>
 		</tr>
 	}
 </table>
@@ -41,10 +41,10 @@
 
 <script>
 
-	function deleteSong(id) {
+	function DeleteMySong(id) {
 		Swal.fire({
 			title: "Kayıt Silme Onayı",
-			html: "Bu kaydı silmek istediğinize emin misiniz? <br><b> bu işlem geri alanımaz.</b>",
+			html: "Bu kaydı silmek istediğinize emin misiniz? <b> bu işlem geri alanımaz.</b>",
 			icon: "info",
 			showCancelButton: true,
 			confirmButtonColor: "#d33",
